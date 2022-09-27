@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "allowUnreachableCode": true, // 是否报告执行不到的代码错误
+        "allowUnusedLabels": false, // 是否报告未使用的标签错误
+        "alwaysStrict": false, // 是否以严格模式解析并为每个源文件生成 "use strict"语句
+        "target": "ESNext",
+        "useDefineForClassFields": true,
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "strict": true,
+        "jsx": "preserve",
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "lib": ["ESNext", "DOM"],
+        "skipLibCheck": true,
+        "baseUrl": ".", // 工作根目录
+        // "outDir": "./dist", // 输出目录
+        // 指定模块的路径，和webpack中resolve.alias配置一样
+        "paths": {
+            "@/*": ["src/*"],
+            "@assets/*": ["src/assets/*"],
+            "@image/*": ["src/assets/image/*"],
+            "@utils/*": ["src/utils/*"],
+            "@components/*": ["src/components/*"],
+            "@views/*": ["src/views/*"],
+            "@store/*": ["src/store/*"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+    "references": [{ "path": "./tsconfig.node.json" }]
+}
