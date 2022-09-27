@@ -15,9 +15,9 @@ class sessionStorageProxy implements ProxyStorage {
         this.storage = storageModel
     }
     public getItem(key: string) {
-        let storage = this.storage.getItem(crypto.encrypto(key))
+        let storage = this.storage.getItem(crypto.Encrypt(key))
         if (storage) {
-            storage = JSON.parse(crypto.decrypto(storage))
+            storage = JSON.parse(crypto.Decrypt(storage))
             if (storage.expires === null) return storage.data
             if (Date.now() - storage.time > storage.expires) {
                 this.storage.removeItem(key)
@@ -33,10 +33,10 @@ class sessionStorageProxy implements ProxyStorage {
             time: Date.now(), //存值时间戳
             expires: expires ? expires * 86_400_000 : null, //过期时间
         }
-        this.storage.setItem(crypto.encrypto(key), crypto.encrypto(JSON.stringify(storage)))
+        this.storage.setItem(crypto.Encrypt(key), crypto.Encrypt(JSON.stringify(storage)))
     }
     public removeItem(key: string) {
-        this.storage.removeItem(crypto.encrypto(key))
+        this.storage.removeItem(crypto.Encrypt(key))
     }
     public clear() {
         this.storage.clear()
